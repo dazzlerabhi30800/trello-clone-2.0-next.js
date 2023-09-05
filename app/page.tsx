@@ -1,3 +1,4 @@
+import Board from "@/components/Board";
 import Header from "@/components/Header";
 
 export default function Home() {
@@ -6,7 +7,7 @@ export default function Home() {
       {/* Header Component */}
       <Header />
       {/* Board Component */}
-      <h1>Trell 2.0 Clone</h1>
+      <Board />
     </main>
   );
 }
