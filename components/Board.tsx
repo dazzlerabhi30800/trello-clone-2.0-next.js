@@ -8,11 +8,12 @@ function Board() {
     // get Board
   }, []);
   return (
-    <DragDropContext>
-      <Droppable droppableId="board" direction="horizontal" type="column">
-        {(provided) => <div>Rendering all the column</div>}
-      </Droppable>
-    </DragDropContext>
+    <h1>Hello World</h1>
+    //    <DragDropContext>
+    //        <Droppable droppableId="board" direction="horizontal" type="column">
+    //          {(provided) => <div>Rendering all the column</div>}
+    //        </Droppable>
+    //      </DragDropContext>
   );
 }
 
