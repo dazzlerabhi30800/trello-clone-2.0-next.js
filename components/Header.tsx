@@ -1,6 +1,7 @@
 "use client";
-import Image from "next/image";
+// import Image from "next/image";
 import { MagnifyingGlassIcon, UserCircleIcon } from "@heroicons/react/20/solid";
+import Image from "next/image";
 import Avatar from "react-avatar";
 
 export default function Header() {

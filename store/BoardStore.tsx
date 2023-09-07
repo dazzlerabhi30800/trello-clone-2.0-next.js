@@ -6,11 +6,12 @@ interface BoardState {
   getBoard: () => void;
 }
 
-const useModalStore = create<BoardState>((set) => ({
+export const useBoardStore = create<BoardState>((set) => ({
   board: {
     columns: new Map<TypedColumn, Column>(),
   },
   getBoard: async () => {
     const board = await getTodosGroupedByColumn();
+    set({ board });
   },
 }));
