@@ -17,7 +17,7 @@ function Board() {
   const handleDragEnd = (e: DropResult) => {
     return;
   };
-  console.log(board);
+
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
       <Droppable droppableId="board" direction="horizontal" type="column">

@@ -1,5 +1,7 @@
+import { PlusCircleIcon } from "@heroicons/react/20/solid";
 import React from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
+import TodoCard from "./TodoCard";
 
 type Props = {
   id: TypedColumn;
@@ -16,7 +18,7 @@ const idToColumnText: {
 };
 
 function Column({ id, todos, index }: Props) {
-  console.log(todos.length);
+  console.log(todos);
   return (
     <Draggable draggableId={id} index={index}>
       {(provided) => (
@@ -31,7 +33,7 @@ function Column({ id, todos, index }: Props) {
                 {...provided.droppableProps}
                 ref={provided.innerRef}
                 className={` p-2 rounded-2xl shadow-sm ${
-                  snapshot.isDraggingOver ? "bg-blue-500" : "bg-white/50"
+                  snapshot.isDraggingOver ? "bg-green-400" : "bg-white/50"
                 }`}
               >
                 <h2 className="flex justify-between font-bold text-xl p-2">
@@ -40,6 +42,34 @@ function Column({ id, todos, index }: Props) {
                     {todos.length}
                   </span>
                 </h2>
+
+                <div className="space-x-2">
+                  {todos.map((todo, index) => (
+                    <Draggable
+                      key={todo.$id}
+                      draggableId={todo.$id}
+                      index={index}
+                    >
+                      {(provided) => (
+                        <TodoCard
+                          todo={todo}
+                          index={index}
+                          id={id}
+                          innerRef={provided.innerRef}
+                          draggableProps={provided.draggableProps}
+                          dragHandleProps={provided.dragHandleProps}
+                        />
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+
+                  <div className="flex items-end justify-end">
+                    <button className="text-green-500 hover:text-green-600">
+                      <PlusCircleIcon className="h-10 w-10" />
+                    </button>
+                  </div>
+                </div>
               </div>
             )}
           </Droppable>

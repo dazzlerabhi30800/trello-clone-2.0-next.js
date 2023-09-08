@@ -15,3 +15,4 @@ export const useBoardStore = create<BoardState>((set) => ({
     set({ board });
   },
 }));
+
