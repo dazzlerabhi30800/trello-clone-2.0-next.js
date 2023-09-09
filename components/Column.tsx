@@ -18,7 +18,6 @@ const idToColumnText: {
 };
 
 function Column({ id, todos, index }: Props) {
-  console.log(todos);
   return (
     <Draggable draggableId={id} index={index}>
       {(provided) => (
@@ -33,7 +32,7 @@ function Column({ id, todos, index }: Props) {
                 {...provided.droppableProps}
                 ref={provided.innerRef}
                 className={` p-2 rounded-2xl shadow-sm ${
-                  snapshot.isDraggingOver ? "bg-green-400" : "bg-white/50"
+                  snapshot.isDraggingOver ? "bg-green-300" : "bg-white/50"
                 }`}
               >
                 <h2 className="flex justify-between font-bold text-xl p-2">
