@@ -48,6 +48,8 @@ function Board() {
       todos: finishColIndex[1].todos,
     };
 
+    console.log(startCol);
+
     if (!finishCol || !startCol) return;
 
     if (source.index === destination.index && startCol === finishCol) return;
@@ -65,6 +67,24 @@ function Board() {
 
       const newColumns = new Map(board.columns);
       newColumns.set(startCol.id, newCol);
+
+      setBoardState({ ...board, columns: newColumns });
+    } else {
+      // dragging to another column
+      const finishTodos = Array.from(finishCol.todos);
+      finishTodos.splice(destination.index, 0, todoMoved);
+
+      const newColumns = new Map(board.columns);
+      const newCol = {
+        id: startCol.id,
+        todos: newTodos,
+      };
+
+      newColumns.set(startCol.id, newCol);
+      newColumns.set(finishCol.id, {
+        id: finishCol.id,
+        todos: finishTodos,
+      });
 
       setBoardState({ ...board, columns: newColumns });
     }
