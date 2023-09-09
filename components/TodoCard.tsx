@@ -24,7 +24,7 @@ const TodoCard = ({
 }: Props) => {
   return (
     <div
-      className="bg-white rounded-md drop-shadow-md space-y-2"
+      className="bg-white  rounded-md drop-shadow-md my-4"
       {...draggableProps}
       {...dragHandleProps}
       ref={innerRef}

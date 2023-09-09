@@ -25,14 +25,48 @@ function Board() {
     if (type === "column") {
       const entries = Array.from(board.columns.entries());
       const [removed] = entries.splice(source.index, 1);
-      console.log(removed);
       entries.splice(destination.index, 0, removed);
       const rearrangedColumns = new Map(entries);
       setBoardState({
         ...board,
         columns: rearrangedColumns,
       });
-      // console.log(board);
+    }
+
+    // Handle Card Drag
+    const columns = Array.from(board.columns);
+    const startColIndex = columns[Number(source.droppableId)];
+    const finishColIndex = columns[Number(destination.droppableId)];
+
+    const startCol: Column = {
+      id: startColIndex[0],
+      todos: startColIndex[1].todos,
+    };
+
+    const finishCol: Column = {
+      id: finishColIndex[0],
+      todos: finishColIndex[1].todos,
+    };
+
+    if (!finishCol || !startCol) return;
+
+    if (source.index === destination.index && startCol === finishCol) return;
+
+    const newTodos = startCol.todos;
+    const [todoMoved] = newTodos.splice(source.index, 1);
+
+    if (startCol.id === finishCol.id) {
+      // Same Column Task Drag
+      newTodos.splice(destination.index, 0, todoMoved);
+      const newCol = {
+        id: startCol.id,
+        todos: newTodos,
+      };
+
+      const newColumns = new Map(board.columns);
+      newColumns.set(startCol.id, newCol);
+
+      setBoardState({ ...board, columns: newColumns });
     }
   };
 
