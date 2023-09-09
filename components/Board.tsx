@@ -92,9 +92,6 @@ function Board() {
           todos: finishTodos,
         });
 
-        // console.log(todoMoved);
-        // console.log(finishCol.id);
-
         // udpate the DB
         updateTodoInDB(todoMoved, finishCol.id);
 
