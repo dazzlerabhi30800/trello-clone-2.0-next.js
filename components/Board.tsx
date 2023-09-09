@@ -5,11 +5,14 @@ import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
 import Column from "./Column";
 
 function Board() {
-  const [getBoard, board, setBoardState] = useBoardStore((state) => [
-    state.getBoard,
-    state.board,
-    state.setBoardState,
-  ]);
+  const [getBoard, board, setBoardState, updateTodoInDB] = useBoardStore(
+    (state) => [
+      state.getBoard,
+      state.board,
+      state.setBoardState,
+      state.updateTodoInDB,
+    ],
+  );
   useEffect(() => {
     // get Board
     getBoard();
@@ -38,19 +41,20 @@ function Board() {
       const columns = Array.from(board.columns);
       const startColIndex = columns[Number(source.droppableId)];
       const finishColIndex = columns[Number(destination.droppableId)];
-      console.log(startColIndex);
 
+      // start column from which the card we are dragging
       const startCol: Column = {
         id: startColIndex[0],
         todos: startColIndex[1].todos,
       };
 
+      // Column which we are dropping
       const finishCol: Column = {
         id: finishColIndex[0],
         todos: finishColIndex[1].todos,
       };
 
-      console.log(startCol);
+      // console.log(startCol);
 
       if (!finishCol || !startCol) return;
 
@@ -87,6 +91,12 @@ function Board() {
           id: finishCol.id,
           todos: finishTodos,
         });
+
+        // console.log(todoMoved);
+        // console.log(finishCol.id);
+
+        // udpate the DB
+        updateTodoInDB(todoMoved, finishCol.id);
 
         setBoardState({ ...board, columns: newColumns });
       }
