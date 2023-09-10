@@ -1,4 +1,3 @@
-"use client";
 import { PlusCircleIcon } from "@heroicons/react/20/solid";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import TodoCard from "./TodoCard";
