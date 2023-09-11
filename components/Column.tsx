@@ -18,7 +18,10 @@ const idToColumnText: {
 };
 
 function Column({ id, todos, index }: Props) {
+<<<<<<< HEAD
   const [searchString] = useBoardStore((state) => [state.searchString]);
+=======
+>>>>>>> 26323c8 (removed window click listener)
   return (
     <Draggable draggableId={id} index={index}>
       {(provided) => (
